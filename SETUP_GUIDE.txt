@@ -1,0 +1,143 @@
+===========================================================
+  EMOTION & ATTENTION TRACKER — SETUP GUIDE
+===========================================================
+
+
+PREREQUISITES
+─────────────
+  1. Windows 10 or later
+  2. Python 3.10 or newer  (https://python.org/downloads)
+  3. A webcam (built-in or USB)
+  4. Internet connection (first run downloads AI models ~50 MB)
+
+
+STEP 1 — INSTALL DEPENDENCIES
+──────────────────────────────
+  Open a terminal (Command Prompt or PowerShell) and run:
+
+    cd C:\Users\Admin\.gemini\antigravity\scratch\emotion_tracker
+    pip install -r requirements.txt
+
+  This installs: opencv-python, deepface, tf-keras, numpy,
+  ultralytics, mediapipe, flask, pystray, Pillow
+
+
+STEP 2 — SET UP AUTO-START ON LOGIN (one time)
+────────────────────────────────────────────────
+  Run this command:
+
+    python install_startup.py
+
+  You should see:  ✅ SUCCESS! Emotion Tracker will start on login.
+
+  This creates a shortcut in your Windows Startup folder so the
+  app launches automatically every time you log in.
+
+
+STEP 3 — START THE APP
+──────────────────────
+  Option A:  Log out and log back in — the app starts automatically.
+
+  Option B:  Double-click "launcher.pyw" to start it right now.
+
+  The app runs silently in the background. Look for the brain
+  icon in your system tray (bottom-right corner, near the clock).
+
+
+USING THE APP
+─────────────
+  Right-click the system tray icon for these options:
+
+    • Show Window    → Opens the live video feed with face tracking
+    • Hide Window    → Hides the video, keeps tracking in background
+    • Open Dashboard → Opens the web dashboard in your browser
+    • Quit           → Stops tracking and sends summary email
+
+
+KEYBOARD CONTROLS (when video window is visible)
+─────────────────────────────────────────────────
+    q  →  Quit the application
+    d  →  Toggle emotion debug bars
+    f  →  Toggle FPS counter
+    g  →  Toggle engagement timeline graph
+    Mouse click on ALARM button  →  Toggle sound alarm
+
+
+WEB DASHBOARD
+─────────────
+  The dashboard starts automatically with the app.
+  Open in any browser:  http://localhost:5000
+
+  Shows:
+    • Emotion distribution chart
+    • Attention vs distraction chart
+    • Engagement score over time
+    • Session statistics
+
+  Auto-refreshes every 5 seconds.
+
+
+DATA & LOGS
+───────────
+  Session CSV logs:    logs\session_YYYY-MM-DD_HH-MM-SS.csv
+  Alert screenshots:   logs\screenshots\
+
+  CSV columns logged every 5 seconds:
+    timestamp, person_id, emotion, is_looking, is_drowsy,
+    engagement, focus_duration_sec, distraction_count,
+    drowsy_count, emotion_stability, session_elapsed_min
+
+
+EMAIL SUMMARY
+─────────────
+  On quit or logout, a session summary email is sent to the
+  configured address with the CSV log attached.
+
+  To change email settings, edit the top of main.py:
+    SENDER_EMAIL    = "your_email@gmail.com"
+    APP_PASSWORD    = "your_app_password"
+    RECEIVER_EMAIL  = "recipient@gmail.com"
+
+
+SETTING UP ON A NEW WINDOWS MACHINE
+────────────────────────────────────
+  1. Copy the entire "emotion_tracker" folder to the new machine
+  2. Install Python 3.10+
+  3. Open terminal in the folder and run:
+       pip install -r requirements.txt
+       python install_startup.py
+  4. Done! App will start on next login.
+
+
+REMOVING AUTO-START
+───────────────────
+  To stop the app from launching on login:
+
+    python install_startup.py --uninstall
+
+
+TROUBLESHOOTING
+───────────────
+  • "No webcam found"
+      → Check your webcam is plugged in and not used by another app
+      → Try changing WEBCAM_INDEX in main.py (0, 1, 2...)
+
+  • "Models downloading slowly"
+      → First run downloads YOLO, MediaPipe, and DNN models
+      → This is a one-time ~50 MB download
+
+  • "pystray not found"
+      → Run: pip install pystray Pillow
+
+  • "Dashboard not loading"
+      → Make sure port 5000 is not used by another app
+      → Check if dashboard.py is running (tray icon restarts it)
+
+  • App not starting on login
+      → Run: python install_startup.py
+      → Make sure pythonw.exe is in your PATH
+
+
+===========================================================
+  Project: C:\Users\Admin\.gemini\antigravity\scratch\emotion_tracker
+===========================================================

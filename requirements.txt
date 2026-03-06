@@ -1,0 +1,11 @@
+opencv-python
+deepface
+tf-keras
+numpy
+ultralytics
+mediapipe
+flask
+pystray
+Pillow
+scikit-learn
+joblib
