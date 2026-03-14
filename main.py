@@ -95,7 +95,7 @@ ABSENCE_FRAME_THRESHOLD = 30  # Frames without detection before marking person a
 
 # Email
 SENDER_EMAIL = "yuvrajmakhecha4@gmail.com"
-APP_PASSWORD = "tcqf nlll rcqs qneh"
+APP_PASSWORD = ""
 RECEIVER_EMAIL = "yuvrajmakhecha4@gmail.com"
 EMAIL_COOLDOWN_SECONDS = 60
 
